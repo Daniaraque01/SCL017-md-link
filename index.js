@@ -1,13 +1,7 @@
 const path = require('path');
-// const marked = require('marked'); //Libreria para obtener links, text, file
-const example = path.isAbsolute('Users/danielaaraque/Documents/Proyetcos Laboratoria/Md-links/');
-console.log(example);
+const example = path.isAbsolute('/Users/danielaaraque/Documents/ProyectosLaboratoria/SCL017-md-link');
+console.log("example" ,example);
 
-const readline = require('readline');
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
 //Leer archivo
   const fs = require("fs");
 
@@ -19,20 +13,34 @@ const rl = readline.createInterface({
     }
     return false;
   })
-  /* const filehasLinks = (path) => {
+  
+  //buscar links
+  const getLinks = (contentFile) => {
+    const convertir = contentFile.split(' ');
+    let links = [];
+    convertir.forEach(elemento => {
+    const isPathHttps = elemento.includes("https://");
+    const isPathHttp = elemento.includes("http://");
+    
+    if (isPathHttps === true  ||  isPathHttp === true ){
 
-  } */
-
-rl.question('ingresa la ruta ', (answer) => {
-  let _path = answer;
+      links.push(elemento);
+    }
+      
+    });
+    return links;
+    
+  } 
+  
+const mdLinks = (pathFile) => {
+  let _path = pathFile;
   //registrar la respuesta en una base de datos
     //resolver si la ruta es relativa o absoluta 
     const isAbsolute =  path.isAbsolute(_path);
-    rl.close();
 
     if (!isAbsolute) {
-      console.log(_path);
       //convierte en ruta absoluta la ruta ingresada (path.resolve)
+      console.log("test", _path);
       _path = path.resolve(_path);
       //normaliza la ruta si hay errores de semantica
       _path = path.normalize(_path);
@@ -42,16 +50,34 @@ rl.question('ingresa la ruta ', (answer) => {
     const IsMd = fileIsMd(_path);
     console.log(IsMd);
    if (IsMd) {
-    fs.readFile(_path, (error, datos) => {
+     //leer archivo
+    fs.readFile(_path, 'utf8', (error, datos) => {
       if (error) throw error;
-      console.log("El contenido es: ", datos);
+
+      console.log(process.argv);
+
+      const links = getLinks(datos);
+     
+      if (links.length > 0 ){
+        //aqui se debe validar el links 
+        console.log("tiene links: " ,links.length);
+      }
+      else {
+        throw "NO TIENE LINKS";
+      }
+  
+      links.forEach(link => {
+        console.log(_path, link);
+      });
+      
     });
 
    }
     if (!IsMd) {
       throw "NO ES UN ARCHIVO MD";
     }
-    const hasLinks = filehasLinks()
-});
+    
+    
+}
 
-
+mdLinks(process.argv[2]);
