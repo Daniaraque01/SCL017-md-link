@@ -17,6 +17,7 @@ console.log("example" ,example);
   //buscar links
   const getLinks = (contentFile) => {
     const convertir = contentFile.split(' ');
+    //Me va agregando los links que va encontrando
     let links = [];
     convertir.forEach(elemento => {
     const isPathHttps = elemento.includes("https://");
