@@ -1,6 +1,6 @@
 # Markdown Links
 
-![md-links](https://github.com/Daniaraque01/SCL017-md-link/blob/master/node_modules?raw=true)
+![md-links](https://github.com/Daniaraque01/SCL017-md-link/blob/master/DiagramadeflujoMd-links.png?raw=true)
 
 ## Índice
 
