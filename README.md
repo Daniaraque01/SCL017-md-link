@@ -2,6 +2,11 @@
 ## Preámbulo 
 Md-links es una libreria que nos permite validar URL, que se encuentran dentro de archivos Markdown (.md), y a la vez permite obtener estadísticas sobre: total de links, links únicos y links rotos.
 
+## Desarrollo del proyecto 
+Para poder llevar a cabo este proyecto, comence primero por investigar conceptos nuevos para el aprendizaje que requeria el poryecto, luego me comence a organizar con "trello" , donde iba agregando información útil, lo que debia hacer, lo que estaba en proceso y por último lo finalizado. 
+
+![md-links](https://github.com/Daniaraque01/SCL017-md-link/blob/master/img/OrganizacionTrello.png?raw=true)
+
 ## Instalación 
 Mediante npm i daniaraque01-mdlinks 
 
