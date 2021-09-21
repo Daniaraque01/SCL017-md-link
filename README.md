@@ -1,5 +1,5 @@
 # Markdown Links
-# Preambulo 
+# Preámbulo 
 Md-links es una libreria que nos permite validar URL, que se encuentran dentro de archivos Markdown (.md), y a la vez permite obtener estadísticas sobre: total de links, links únicos y links rotos.
 
 # Instalación 
