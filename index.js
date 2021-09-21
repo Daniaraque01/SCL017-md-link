@@ -1,6 +1,8 @@
 const path = require('path');
 const example = path.isAbsolute('/Users/danielaaraque/Documents/ProyectosLaboratoria/SCL017-md-link');
 console.log("example" ,example);
+const axios = require('axios'); 
+
 
 //Leer archivo
   const fs = require("fs");
@@ -69,6 +71,7 @@ const mdLinks = (pathFile) => {
   
       links.forEach(link => {
         console.log(_path, link);
+        validationLinks(link);
       });
       
     });
@@ -82,3 +85,27 @@ const mdLinks = (pathFile) => {
 }
 
 mdLinks(process.argv[2]);
+
+//comenzando a validar links 
+const validationLinks = (url) => {
+
+  const searchLinks = url.split('(');
+  const cleanLinks = searchLinks[1] === undefined ||  searchLinks[1] === null ? url : searchLinks[1].split(')')[0]
+  console.log(cleanLinks);
+  /*
+  console.log(cleanLinks); */
+axios.get(cleanLinks)
+.then(function (response) {
+  // handle success
+  console.log(response.status);
+  console.log(cleanLinks);
+})
+.catch(function (error) {
+  // handle error
+  console.log(error.status);
+})
+.then(function () {
+  // always executed
+});
+
+}
