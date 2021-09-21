@@ -1,14 +1,14 @@
 # Markdown Links
-# Preámbulo 
+## Preámbulo 
 Md-links es una libreria que nos permite validar URL, que se encuentran dentro de archivos Markdown (.md), y a la vez permite obtener estadísticas sobre: total de links, links únicos y links rotos.
 
-# Instalación 
+## Instalación 
 Mediante npm i daniaraque01-mdlinks 
 
-# Repositorio de GitHub
+## Repositorio de GitHub
 https://github.com/Daniaraque01/SCL017-md-link.git
 
-# Guia de uso 
+## Guia de uso 
 Para acceder a mdLinks debemos importar con const mdLinks = require('daniaraque01-mdlinks')
 
 # Diagrama de flujo
