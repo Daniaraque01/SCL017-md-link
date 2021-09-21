@@ -68,12 +68,19 @@ const mdLinks = (pathFile) => {
       else {
         throw "NO TIENE LINKS";
       }
-  
+  const linkGood = [];
+  const linkBad = [];
+
       links.forEach(link => {
         console.log(_path, link);
-        validationLinks(link);
+        validationLinks(link).then(r =>{
+          linkGood.push(link);
+          console.log(r);
+        }).catch(() => {
+          console.log('Algo salió mal');
+        });
       });
-      
+      console.log(linkGood);
     });
 
    }
@@ -87,25 +94,34 @@ const mdLinks = (pathFile) => {
 mdLinks(process.argv[2]);
 
 //comenzando a validar links 
-const validationLinks = (url) => {
 
-  const searchLinks = url.split('(');
-  const cleanLinks = searchLinks[1] === undefined ||  searchLinks[1] === null ? url : searchLinks[1].split(')')[0]
-  console.log(cleanLinks);
-  /*
-  console.log(cleanLinks); */
-axios.get(cleanLinks)
-.then(function (response) {
-  // handle success
-  console.log(response.status);
-  console.log(cleanLinks);
-})
-.catch(function (error) {
-  // handle error
-  console.log(error.status);
-})
-.then(function () {
-  // always executed
-});
+ const validationLinks = (url) => {
+  return new Promise(function(resolve, reject) {
+    const searchLinks = url.split('(');
+    const cleanLinks = searchLinks[1] === undefined ||  searchLinks[1] === null ? url : searchLinks[1].split(')')[0]
+    // console.log(cleanLinks);
+  
+    /*
+    console.log(cleanLinks); */
+  axios.get(cleanLinks)
+  .then(function (response) {
+    // handle success
+    
+    // console.log(response.status);
+    if (response.status === 200) {
+      resolve(true);
+      // console.log(linksGood);
+    }
+  
+    else if (response.status === 500) {
+      resolve(false);
+    }
+  })
+  .catch(function (error) {
+    // handle error
+    resolve(false);
+  })
 
+  })
 }
+
